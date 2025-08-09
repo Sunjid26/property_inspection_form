@@ -704,9 +704,22 @@
             }
             
             // Here you would normally send the data to your n8n webhook
-            console.log('Inspection Data:', data);
-            alert('Inspection submitted successfully! Check the console for data.');
-            
+            // Send data to n8n webhook
+            fetch('https://yourname.app.n8n.cloud/webhook/property-inspection', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Inspection submitted successfully!');
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Error submitting form. Please try again.');
+            });
+                        
             // To send to n8n, you would use:
             // fetch('YOUR_N8N_WEBHOOK_URL', {
             //     method: 'POST',
