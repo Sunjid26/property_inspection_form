@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Walkthrough Inspection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #2c5aa0;
+            border-bottom: 2px solid #2c5aa0;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #555;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 80px;
+            resize: vertical;
+        }
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 5px;
+        }
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            font-weight: normal;
+            margin-bottom: 0;
+        }
+        .radio-group input[type="radio"] {
+            width: auto;
+            margin-right: 5px;
+        }
+        .room-section {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 4px solid #2c5aa0;
+        }
+        .submit-btn {
+            background: #2c5aa0;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 30px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .submit-btn:hover {
+            background: #1e3f73;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Property Walkthrough Inspection</h1>
+        <form id="inspectionForm">
+            <!-- Property Information -->
+            <h2>Property Information</h2>
+            <div class="form-group">
+                <label for="inspectionDate">Inspection Date:</label>
+                <input type="date" id="inspectionDate" name="inspectionDate" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="propertyAddress">Property Address:</label>
+                <input type="text" id="propertyAddress" name="propertyAddress" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="bedrooms">Number of Bedrooms:</label>
+                <select id="bedrooms" name="bedrooms" onchange="generateRoomSections()" required>
+                    <option value="">Select...</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="bathrooms">Number of Bathrooms:</label>
+                <select id="bathrooms" name="bathrooms" onchange="generateRoomSections()" required>
+                    <option value="">Select...</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+
+            <!-- General Property Checklist -->
+            <h2>General Property Checklist</h2>
+            
+            <div class="form-group">
+                <label>Property has door locks?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="doorLocks" value="yes"> Yes</label>
+                    <label><input type="radio" name="doorLocks" value="no"> No</label>
+                    <label><input type="radio" name="doorLocks" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Make sure all doors have door stoppers</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="doorStoppers" value="yes"> Yes</label>
+                    <label><input type="radio" name="doorStoppers" value="no"> No</label>
+                    <label><input type="radio" name="doorStoppers" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Door knobs turn and locks work?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="doorKnobs" value="yes"> Yes</label>
+                    <label><input type="radio" name="doorKnobs" value="no"> No</label>
+                    <label><input type="radio" name="doorKnobs" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Doors open/close freely? No Gaps?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="doorsOpenClose" value="yes"> Yes</label>
+                    <label><input type="radio" name="doorsOpenClose" value="no"> No</label>
+                    <label><input type="radio" name="doorsOpenClose" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Windows open & close/lock? No Broken windows? No Gaps?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="windowsOpenClose" value="yes"> Yes</label>
+                    <label><input type="radio" name="windowsOpenClose" value="no"> No</label>
+                    <label><input type="radio" name="windowsOpenClose" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Make sure all window blinds work</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="windowBlinds" value="yes"> Yes</label>
+                    <label><input type="radio" name="windowBlinds" value="no"> No</label>
+                    <label><input type="radio" name="windowBlinds" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>All windows have screens?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="windowScreens" value="yes"> Yes</label>
+                    <label><input type="radio" name="windowScreens" value="no"> No</label>
+                    <label><input type="radio" name="windowScreens" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Make sure all lights and fixtures work (including ceiling fans)</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="lightsFixtures" value="yes"> Yes</label>
+                    <label><input type="radio" name="lightsFixtures" value="no"> No</label>
+                    <label><input type="radio" name="lightsFixtures" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Make sure all outlets work</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="outlets" value="yes"> Yes</label>
+                    <label><input type="radio" name="outlets" value="no"> No</label>
+                    <label><input type="radio" name="outlets" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Electrical socket covers on all outlets (for dryer connection too) (check garage too)</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="socketCovers" value="yes"> Yes</label>
+                    <label><input type="radio" name="socketCovers" value="no"> No</label>
+                    <label><input type="radio" name="socketCovers" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Sink stoppers work?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="sinkStoppers" value="yes"> Yes</label>
+                    <label><input type="radio" name="sinkStoppers" value="no"> No</label>
+                    <label><input type="radio" name="sinkStoppers" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Water gets hot & cold at all showers/tubs & sinks?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="hotColdWater" value="yes"> Yes</label>
+                    <label><input type="radio" name="hotColdWater" value="no"> No</label>
+                    <label><input type="radio" name="hotColdWater" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Check for leaks under sink/washer & dryer connections?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="checkLeaks" value="yes"> No Leaks</label>
+                    <label><input type="radio" name="checkLeaks" value="no"> Leaks Found</label>
+                    <label><input type="radio" name="checkLeaks" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Water faucets and shower heads work?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="faucetsShowerheads" value="yes"> Yes</label>
+                    <label><input type="radio" name="faucetsShowerheads" value="no"> No</label>
+                    <label><input type="radio" name="faucetsShowerheads" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Appliances turn on?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="appliances" value="yes"> Yes</label>
+                    <label><input type="radio" name="appliances" value="no"> No</label>
+                    <label><input type="radio" name="appliances" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Garbage disposal works?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="garbageDisposal" value="yes"> Yes</label>
+                    <label><input type="radio" name="garbageDisposal" value="no"> No</label>
+                    <label><input type="radio" name="garbageDisposal" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Caulking around kitchen sink, bathroom sinks, bath tub, and toilet?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="caulking" value="yes"> Yes</label>
+                    <label><input type="radio" name="caulking" value="no"> No</label>
+                    <label><input type="radio" name="caulking" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Kitchen cabinet doors & drawers open/close properly?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="kitchenCabinets" value="yes"> Yes</label>
+                    <label><input type="radio" name="kitchenCabinets" value="no"> No</label>
+                    <label><input type="radio" name="kitchenCabinets" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Kitchen cabinets have hardware?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="cabinetHardware" value="yes"> Yes</label>
+                    <label><input type="radio" name="cabinetHardware" value="no"> No</label>
+                    <label><input type="radio" name="cabinetHardware" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>All holes are patched, textured, and painted?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="holesPatched" value="yes"> Yes</label>
+                    <label><input type="radio" name="holesPatched" value="no"> No</label>
+                    <label><input type="radio" name="holesPatched" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>No paint on floors?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="noPaintFloors" value="yes"> Yes</label>
+                    <label><input type="radio" name="noPaintFloors" value="no"> No</label>
+                    <label><input type="radio" name="noPaintFloors" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Flooring has transition? If needed.</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="flooringTransition" value="yes"> Yes</label>
+                    <label><input type="radio" name="flooringTransition" value="no"> No</label>
+                    <label><input type="radio" name="flooringTransition" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Dryer has exhaust?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="dryerExhaust" value="yes"> Yes</label>
+                    <label><input type="radio" name="dryerExhaust" value="no"> No</label>
+                    <label><input type="radio" name="dryerExhaust" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Smoke detectors installed/working?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="smokeDetectors" value="yes"> Yes</label>
+                    <label><input type="radio" name="smokeDetectors" value="no"> No</label>
+                    <label><input type="radio" name="smokeDetectors" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Site is cleaned, trash is in black bags?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="siteCleaned" value="yes"> Yes</label>
+                    <label><input type="radio" name="siteCleaned" value="no"> No</label>
+                    <label><input type="radio" name="siteCleaned" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Attic & basement have no trash? Can be merged with no trash at site?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="atticBasementClean" value="yes"> Yes</label>
+                    <label><input type="radio" name="atticBasementClean" value="no"> No</label>
+                    <label><input type="radio" name="atticBasementClean" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Ecobee thermostats?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="ecobeeThermostats" value="yes"> Yes</label>
+                    <label><input type="radio" name="ecobeeThermostats" value="no"> No</label>
+                    <label><input type="radio" name="ecobeeThermostats" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Ring Doorbell installed? (N/A if not applicable)</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="ringDoorbell" value="yes"> Yes</label>
+                    <label><input type="radio" name="ringDoorbell" value="no"> No</label>
+                    <label><input type="radio" name="ringDoorbell" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Air vent covers attached?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="airVentCovers" value="yes"> Yes</label>
+                    <label><input type="radio" name="airVentCovers" value="no"> No</label>
+                    <label><input type="radio" name="airVentCovers" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Bathtubs have Curtain Rods?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="bathtubCurtainRods" value="yes"> Yes</label>
+                    <label><input type="radio" name="bathtubCurtainRods" value="no"> No</label>
+                    <label><input type="radio" name="bathtubCurtainRods" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>All doors interior/exterior secure properly?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="doorsSecure" value="yes"> Yes</label>
+                    <label><input type="radio" name="doorsSecure" value="no"> No</label>
+                    <label><input type="radio" name="doorsSecure" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>No exposed wires?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="noExposedWires" value="yes"> Yes</label>
+                    <label><input type="radio" name="noExposedWires" value="no"> No</label>
+                    <label><input type="radio" name="noExposedWires" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Garage door works? Opens and close?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="garageDoor" value="yes"> Yes</label>
+                    <label><input type="radio" name="garageDoor" value="no"> No</label>
+                    <label><input type="radio" name="garageDoor" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Are there garage openers?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="garageOpeners" value="yes"> Yes</label>
+                    <label><input type="radio" name="garageOpeners" value="no"> No</label>
+                    <label><input type="radio" name="garageOpeners" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>A/C filters replaced/clean?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="acFilters" value="yes"> Yes</label>
+                    <label><input type="radio" name="acFilters" value="no"> No</label>
+                    <label><input type="radio" name="acFilters" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>At least one CO detector on each floor</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="coDetectors" value="yes"> Yes</label>
+                    <label><input type="radio" name="coDetectors" value="no"> No</label>
+                    <label><input type="radio" name="coDetectors" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Is the doorbell functioning?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="doorbellFunctioning" value="yes"> Yes</label>
+                    <label><input type="radio" name="doorbellFunctioning" value="no"> No</label>
+                    <label><input type="radio" name="doorbellFunctioning" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Are the appliances installed correctly?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="appliancesInstalled" value="yes"> Yes</label>
+                    <label><input type="radio" name="appliancesInstalled" value="no"> No</label>
+                    <label><input type="radio" name="appliancesInstalled" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>AC cools/Heater blows warm?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="hvac" value="yes"> Yes</label>
+                    <label><input type="radio" name="hvac" value="no"> No</label>
+                    <label><input type="radio" name="hvac" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Fridge water filter replaced if needed?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="fridgeWaterFilter" value="yes"> Yes</label>
+                    <label><input type="radio" name="fridgeWaterFilter" value="no"> No</label>
+                    <label><input type="radio" name="fridgeWaterFilter" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Property has Trash bin?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="trashBin" value="yes"> Yes</label>
+                    <label><input type="radio" name="trashBin" value="no"> No</label>
+                    <label><input type="radio" name="trashBin" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Property has Recycle bin?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="recycleBin" value="yes"> Yes</label>
+                    <label><input type="radio" name="recycleBin" value="no"> No</label>
+                    <label><input type="radio" name="recycleBin" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Preventative pest control done here</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="pestControl" value="yes"> Yes</label>
+                    <label><input type="radio" name="pestControl" value="no"> No</label>
+                    <label><input type="radio" name="pestControl" value="na"> N/A</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>General Notes:</label>
+                <textarea name="generalNotes" placeholder="Any general observations or issues..."></textarea>
+            </div>
+
+            <!-- Dynamic Room Sections -->
+            <div id="roomSections"></div>
+
+            <button type="submit" class="submit-btn">Submit Inspection</button>
+        </form>
+    </div>
+
+    <script>
+        function generateRoomSections() {
+            const bedrooms = parseInt(document.getElementById('bedrooms').value) || 0;
+            const bathrooms = parseInt(document.getElementById('bathrooms').value) || 0;
+            const container = document.getElementById('roomSections');
+            
+            let html = '';
+            
+            // Generate bedroom sections
+            for (let i = 1; i <= bedrooms; i++) {
+                html += `
+                    <div class="room-section">
+                        <h3>Bedroom ${i}</h3>
+                        
+                        <div class="form-group">
+                            <label>Door locks and hardware work?</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="bedroom${i}_doorLocks" value="yes"> Yes</label>
+                                <label><input type="radio" name="bedroom${i}_doorLocks" value="no"> No</label>
+                                <label><input type="radio" name="bedroom${i}_doorLocks" value="na"> N/A</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Windows open/close properly? No broken windows?</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="bedroom${i}_windows" value="yes"> Yes</label>
+                                <label><input type="radio" name="bedroom${i}_windows" value="no"> No</label>
+                                <label><input type="radio" name="bedroom${i}_windows" value="na"> N/A</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>All windows have screens?</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="bedroom${i}_screens" value="yes"> Yes</label>
+                                <label><input type="radio" name="bedroom${i}_screens" value="no"> No</label>
+                                <label><input type="radio" name="bedroom${i}_screens" value="na"> N/A</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Window blinds work?</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="bedroom${i}_blinds" value="yes"> Yes</label>
+                                <label><input type="radio" name="bedroom${i}_blinds" value="no"> No</label>
+                                <label><input type="radio" name="bedroom${i}_blinds" value="na"> N/A</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>All lights and fixtures work?</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="bedroom${i}_lights" value="yes"> Yes</label>
+                                <label><input type="radio" name="bedroom${i}_lights" value="no"> No</label>
+                                <label><input type="radio" name="bedroom${i}_lights" value="na"> N/A</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>All outlets work?</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="bedroom${i}_outlets" value="yes"> Yes</label>
+                                <label><input type="radio" name="bedroom${i}_outlets" value="no"> No</label>
+                                <label><input type="radio" name="bedroom${i}_outlets" value="na"> N/A</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Notes for Bedroom ${i}:</label>
+                            <textarea name="bedroom${i}_notes" placeholder="Any specific issues or observations for this bedroom..."></textarea>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Generate bathroom sections
+            for (let i = 1; i <= bathrooms; i++) {
+                html += `
+                    <div class="room-section">
+                        <h3>Bathroom ${i}</h3>
+                        
+                        <div class="form-group">
+                            <label>Water gets hot & cold at sink/shower/tub?</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="bathroom${i}_water" value="yes"> Yes</label>
+                                <label><input type="radio" name="bathroom${i}_water" value="no"> No</label>
+                                <label><input type="radio" name="bathroom${i}_water" value="na"> N/A</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Sink stopper works?</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="bathroom${i}_stopper" value="yes"> Yes</label>
+                                <label><input type="radio" name="bathroom${i}_stopper" value="no"> No</label>
+                                <label><input type="radio" name="bathroom${i}_stopper" value="na"> N/A</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Check for leaks under sink?</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="bathroom${i}_leaks" value="yes"> No Leaks</label>
+                                <label><input type="radio" name="bathroom${i}_leaks" value="no"> Leaks Found</label>
+                                <label><input type="radio" name="bathroom${i}_leaks" value="na"> N/A</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Faucets and shower heads work?</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="bathroom${i}_faucets" value="yes"> Yes</label>
+                                <label><input type="radio" name="bathroom${i}_faucets" value="no"> No</label>
+                                <label><input type="radio" name="bathroom${i}_faucets" value="na"> N/A</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Caulking around sink, bathtub, and toilet?</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="bathroom${i}_caulking" value="yes"> Yes</label>
+                                <label><input type="radio" name="bathroom${i}_caulking" value="no"> No</label>
+                                <label><input type="radio" name="bathroom${i}_caulking" value="na"> N/A</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Bathtub has curtain rod?</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="bathroom${i}_curtainRod" value="yes"> Yes</label>
+                                <label><input type="radio" name="bathroom${i}_curtainRod" value="no"> No</label>
+                                <label><input type="radio" name="bathroom${i}_curtainRod" value="na"> N/A</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Notes for Bathroom ${i}:</label>
+                            <textarea name="bathroom${i}_notes" placeholder="Any specific issues or observations for this bathroom..."></textarea>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            container.innerHTML = html;
+        }
+
+        // Set today's date as default
+        document.getElementById('inspectionDate').valueAsDate = new Date();
+
+        // Handle form submission
+        document.getElementById('inspectionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect all form data
+            const formData = new FormData(this);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            // Here you would normally send the data to your n8n webhook
+            console.log('Inspection Data:', data);
+            alert('Inspection submitted successfully! Check the console for data.');
+            
+            // To send to n8n, you would use:
+            // fetch('YOUR_N8N_WEBHOOK_URL', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify(data)
+            // });
+        });
+    </script>
+</body>
+</html>
