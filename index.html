@@ -1162,6 +1162,28 @@
             // Initial progress update
             updateProgress();
         });
+        
+          // Function to get query parameter by name
+          function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name) || '';
+          }
+        
+          // Prefill form fields if matching query params exist
+          document.addEventListener('DOMContentLoaded', function () {
+            // Adjust selectors to match your input field IDs or names
+            const bedsField = document.querySelector('[name="beds"]');
+            const bathField = document.querySelector('[name="bathroom"]');
+            const addressField = document.querySelector('[name="address"]');
+            const channelField = document.querySelector('[name="channel"]');
+        
+            if (bedsField) bedsField.value = getQueryParam('beds');
+            if (bathField) bathField.value = getQueryParam('bathroom');
+            if (addressField) addressField.value = getQueryParam('address');
+            if (channelField) channelField.value = getQueryParam('channel');
+          });
+
+
     </script>
 </body>
 </html>
