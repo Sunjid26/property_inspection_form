@@ -54,41 +54,20 @@
                                 <div class="error-message">Please enter the property address</div>
                             </div>
                             
-                            <div class="form-group required-field">
-                                <label for="bedrooms">Number of Bedrooms:</label>
-                                <select id="bedrooms" name="bedrooms" onchange="generateRoomSections()" required>
-                                    <option value="">Select...</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                </select>
-                                <div class="error-message">Please select the number of bedrooms</div>
-                            </div>
+                        <div class="form-group required-field">
+                            <label for="bedrooms">Number of Bedrooms:</label>
+                            <input type="number" id="bedrooms" name="bedrooms" min="1" max="10" 
+                                onchange="generateRoomSections()" placeholder="Enter number" required>
+                            <div class="error-message">Please enter the number of bedrooms</div>
+                        </div>
                             
-                            <div class="form-group required-field">
-                                <label for="bathrooms">Number of Bathrooms:</label>
-                                <select id="bathrooms" name="bathrooms" onchange="generateRoomSections()" required>
-                                    <option value="">Select...</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                </select>
-                                <div class="error-message">Please select the number of bathrooms</div>
-                            </div>
+                        <div class="form-group required-field">
+                            <label for="bathrooms">Number of Bathrooms:</label>
+                            <input type="number" id="bathrooms" name="bathrooms" min="1" max="10" 
+                                onchange="generateRoomSections()" placeholder="Enter number" required>
+                            <div class="error-message">Please enter the number of bathrooms</div>
+                        </div>
+
                         </div>
                     </div>
 
@@ -1162,6 +1141,52 @@
             // Initial progress update
             updateProgress();
         });
+
+        // Get query parameter value
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name) || '';
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Bedrooms (number input)
+            const bedroomsValue = getQueryParam('bedrooms');
+            if (bedroomsValue) {
+                const bedroomsField = document.querySelector('#bedrooms');
+                if (bedroomsField) {
+                    bedroomsField.value = bedroomsValue;
+                    // Trigger the room generation after setting value
+                    generateRoomSections();
+                }
+            }
+
+            // Bathrooms (number input)
+            const bathroomsValue = getQueryParam('bathrooms');
+            if (bathroomsValue) {
+                const bathroomsField = document.querySelector('#bathrooms');
+                if (bathroomsField) {
+                    bathroomsField.value = bathroomsValue;
+                    // Trigger the room generation after setting value
+                    generateRoomSections();
+                }
+            }
+
+            // Property Address (text field)
+            const addressValue = getQueryParam('address');
+            if (addressValue) {
+                const addressField = document.querySelector('#propertyAddress');
+                if (addressField) addressField.value = decodeURIComponent(addressValue);
+            }
+
+            // Slack channel (if you have this field)
+            const channelValue = getQueryParam('channel');
+            if (channelValue) {
+                const channelField = document.querySelector('[name="channel"]');
+                if (channelField) channelField.value = channelValue;
+            }
+        });
+
+    
     </script>
 </body>
 </html>
