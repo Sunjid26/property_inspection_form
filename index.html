@@ -1,595 +1,551 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Property Walkthrough Inspection</title>
-    
-    <link rel="stylesheet" href="style.css" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Property Walkthrough Inspection</title>
+<link href="style.css" rel="stylesheet"/>
 </head>
 <body>
-    <div class="container">
-        <div class="form-header fade-in">
-            <h1>Property Inspection</h1>
-            <p>Comprehensive Walkthrough Checklist</p>
-        </div>
-
-        <div class="form-container fade-in">
-            <div class="progress-bar" id="progressBar"></div>
-            
-            <div class="form-content">
-                <div class="completion-stats" id="completionStats" style="display: none;">
-                    <div class="stat">
-                        <div class="stat-number" id="completedCount">0</div>
-                        <div class="stat-label">Completed</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number" id="totalCount">0</div>
-                        <div class="stat-label">Total Items</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number" id="progressPercent">0%</div>
-                        <div class="stat-label">Progress</div>
-                    </div>
-                </div>
-
-                <form id="inspectionForm">
-                    <!-- Property Information -->
-                    <div class="section">
-                        <div class="section-header">
-                            <div class="section-icon">📋</div>
-                            <h2>Property Information</h2>
-                        </div>
-                        
-                        <div class="form-grid">
-                            <div class="form-group required-field">
-                                <label for="inspectionDate">Inspection Date:</label>
-                                <input type="date" id="inspectionDate" name="inspectionDate" required>
-                                <div class="error-message">Please select an inspection date</div>
-                            </div>
-                            
-                            <div class="form-group required-field">
-                                <label for="propertyAddress">Property Address:</label>
-                                <input type="text" id="propertyAddress" name="propertyAddress" placeholder="Enter full property address" required readonly>
-                                <div class="error-message">Please enter the property address</div>
-                            </div>
-                            
-                        <div class="form-group required-field">
-                            <label for="bedrooms">Number of Bedrooms:</label>
-                            <input type="number" id="bedrooms" name="bedrooms" min="1" max="10" 
-                                onchange="generateRoomSections()" placeholder="Enter number" required readonly>
-                            <div class="error-message">Please enter the number of bedrooms</div>
-                        </div>
-                            
-                        <div class="form-group required-field">
-                            <label for="bathrooms">Number of Bathrooms:</label>
-                            <input type="number" id="bathrooms" name="bathrooms" min="1" max="10" 
-                                onchange="generateRoomSections()" placeholder="Enter number" required readonly>
-                            <div class="error-message">Please enter the number of bathrooms</div>
-                        </div>
-
-                        </div>
-                    </div>
-
-                    <!-- General Property Checklist -->
-                    <div class="section">
-                        <div class="section-header">
-                            <div class="section-icon">🏠</div>
-                            <h2>General Property Checklist</h2>
-                        </div>
-                        
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label>Property has door locks?</label>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" name="doorLocks" value="yes">
-                                        <span class="radio-label">✅ Yes</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="doorLocks" value="no">
-                                        <span class="radio-label">❌ No</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="doorLocks" value="na">
-                                        <span class="radio-label">➖ N/A</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Appliances turn on?</label>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" name="appliancesWork" value="yes">
-                                        <span class="radio-label">✅ Yes</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="appliancesWork" value="no">
-                                        <span class="radio-label">❌ No</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="appliancesWork" value="na">
-                                        <span class="radio-label">➖ N/A</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Are the appliances installed correctly?</label>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" name="appliancesInstalled" value="yes">
-                                        <span class="radio-label">✅ Yes</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="appliancesInstalled" value="no">
-                                        <span class="radio-label">❌ No</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="appliancesInstalled" value="na">
-                                        <span class="radio-label">➖ N/A</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Garbage disposal works?</label>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" name="garbageDisposal" value="yes">
-                                        <span class="radio-label">✅ Yes</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="garbageDisposal" value="no">
-                                        <span class="radio-label">❌ No</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="garbageDisposal" value="na">
-                                        <span class="radio-label">➖ N/A</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Caulking around kitchen sink, bathroom sinks, bath tub, and toilet?</label>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" name="caulking" value="yes">
-                                        <span class="radio-label">✅ Yes</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="caulking" value="no">
-                                        <span class="radio-label">❌ No</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="caulking" value="na">
-                                        <span class="radio-label">➖ N/A</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Bathtubs have Curtain Rods?</label>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" name="curtainRods" value="yes">
-                                        <span class="radio-label">✅ Yes</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="curtainRods" value="no">
-                                        <span class="radio-label">❌ No</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="curtainRods" value="na">
-                                        <span class="radio-label">➖ N/A</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Kitchen cabinet doors & drawers open/close properly?</label>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" name="kitchenCabinets" value="yes">
-                                        <span class="radio-label">✅ Yes</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="kitchenCabinets" value="no">
-                                        <span class="radio-label">❌ No</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="kitchenCabinets" value="na">
-                                        <span class="radio-label">➖ N/A</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Kitchen cabinets have hardware?</label>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" name="cabinetHardware" value="yes">
-                                        <span class="radio-label">✅ Yes</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="cabinetHardware" value="no">
-                                        <span class="radio-label">❌ No</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="cabinetHardware" value="na">
-                                        <span class="radio-label">➖ N/A</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>All holes are patched, textured, and painted?</label>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" name="wallRepairs" value="yes">
-                                        <span class="radio-label">✅ Yes</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="wallRepairs" value="no">
-                                        <span class="radio-label">❌ No</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="wallRepairs" value="na">
-                                        <span class="radio-label">➖ N/A</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>No paint on floors?</label>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" name="noPaintOnFloors" value="yes">
-                                        <span class="radio-label">✅ Yes</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="noPaintOnFloors" value="no">
-                                        <span class="radio-label">❌ No</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="noPaintOnFloors" value="na">
-                                        <span class="radio-label">➖ N/A</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Flooring has transition? If needed.</label>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" name="flooringTransition" value="yes">
-                                        <span class="radio-label">✅ Yes</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="flooringTransition" value="no">
-                                        <span class="radio-label">❌ No</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="flooringTransition" value="na">
-                                        <span class="radio-label">➖ N/A</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Dryer has exhaust?</label>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" name="dryerExhaust" value="yes">
-                                        <span class="radio-label">✅ Yes</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="dryerExhaust" value="no">
-                                        <span class="radio-label">❌ No</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="dryerExhaust" value="na">
-                                        <span class="radio-label">➖ N/A</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Smoke detectors installed/working?</label>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" name="smokeDetectors" value="yes">
-                                        <span class="radio-label">✅ Yes</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="smokeDetectors" value="no">
-                                        <span class="radio-label">❌ No</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="smokeDetectors" value="na">
-                                        <span class="radio-label">➖ N/A</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>At least one CO detector on each floor</label>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" name="coDetectors" value="yes">
-                                        <span class="radio-label">✅ Yes</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="coDetectors" value="no">
-                                        <span class="radio-label">❌ No</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="coDetectors" value="na">
-                                        <span class="radio-label">➖ N/A</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Site is cleaned, trash is in black bags?</label>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" name="siteCleaned" value="yes">
-                                        <span class="radio-label">✅ Yes</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="siteCleaned" value="no">
-                                        <span class="radio-label">❌ No</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="siteCleaned" value="na">
-                                        <span class="radio-label">➖ N/A</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Attic & basement have no trash? Can be merged with no trash at site?</label>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" name="atticBasementClean" value="yes">
-                                        <span class="radio-label">✅ Yes</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="atticBasementClean" value="no">
-                                        <span class="radio-label">❌ No</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="atticBasementClean" value="na">
-                                        <span class="radio-label">➖ N/A</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Ecobee thermostats?</label>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" name="ecobeeThermostats" value="yes">
-                                        <span class="radio-label">✅ Yes</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="ecobeeThermostats" value="no">
-                                        <span class="radio-label">❌ No</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="ecobeeThermostats" value="na">
-                                        <span class="radio-label">➖ N/A</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Ring Doorbell installed? (N/A if not applicable)</label>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" name="ringDoorbell" value="yes">
-                                        <span class="radio-label">✅ Yes</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="ringDoorbell" value="no">
-                                        <span class="radio-label">❌ No</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="ringDoorbell" value="na">
-                                        <span class="radio-label">➖ N/A</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Is the doorbell functioning?</label>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" name="doorbellFunctioning" value="yes">
-                                        <span class="radio-label">✅ Yes</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="doorbellFunctioning" value="no">
-                                        <span class="radio-label">❌ No</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="doorbellFunctioning" value="na">
-                                        <span class="radio-label">➖ N/A</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Garage door works? Opens and close?</label>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" name="garageDoor" value="yes">
-                                        <span class="radio-label">✅ Yes</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="garageDoor" value="no">
-                                        <span class="radio-label">❌ No</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="garageDoor" value="na">
-                                        <span class="radio-label">➖ N/A</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Are there garage openers?</label>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" name="garageOpeners" value="yes">
-                                        <span class="radio-label">✅ Yes</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="garageOpeners" value="no">
-                                        <span class="radio-label">❌ No</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="garageOpeners" value="na">
-                                        <span class="radio-label">➖ N/A</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>A/C filters replaced/clean?</label>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" name="acFilters" value="yes">
-                                        <span class="radio-label">✅ Yes</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="acFilters" value="no">
-                                        <span class="radio-label">❌ No</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="acFilters" value="na">
-                                        <span class="radio-label">➖ N/A</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>AC cools/Heater blows warm?</label>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" name="hvac" value="yes">
-                                        <span class="radio-label">✅ Yes</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="hvac" value="no">
-                                        <span class="radio-label">❌ No</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="hvac" value="na">
-                                        <span class="radio-label">➖ N/A</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Fridge water filter replaced if needed?</label>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" name="fridgeWaterFilter" value="yes">
-                                        <span class="radio-label">✅ Yes</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="fridgeWaterFilter" value="no">
-                                        <span class="radio-label">❌ No</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="fridgeWaterFilter" value="na">
-                                        <span class="radio-label">➖ N/A</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Property has Trash bin?</label>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" name="trashBin" value="yes">
-                                        <span class="radio-label">✅ Yes</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="trashBin" value="no">
-                                        <span class="radio-label">❌ No</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="trashBin" value="na">
-                                        <span class="radio-label">➖ N/A</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Property has Recycle bin?</label>
-                                <div class="radio-group">
-                                    <div class="radio-option">
-                                        <input type="radio" name="recycleBin" value="yes">
-                                        <span class="radio-label">✅ Yes</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="recycleBin" value="no">
-                                        <span class="radio-label">❌ No</span>
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" name="recycleBin" value="na">
-                                        <span class="radio-label">➖ N/A</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label>General Property Notes:</label>
-                            <textarea name="generalPropertyNotes" placeholder="Add any additional notes, observations, or details about the general property inspection..."></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Dynamic Room Sections -->
-                    <div id="roomSections"></div>
-
-                    <!-- Media Upload Section -->
-                    <div class="section">
-                        <div class="section-header">
-                            <div class="section-icon">📸</div>
-                            <h2>Photos & Videos</h2>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Upload inspection photos and videos:</label>
-                            <div class="upload-area" id="uploadArea">
-                                <div class="upload-icon">📁</div>
-                                <div class="upload-text">Drag and drop files here, or click to select</div>
-                                <div class="upload-hint">Supports: JPG, PNG, GIF, MP4, MOV, AVI (Max 50MB per file)</div>
-                                <input type="file" id="mediaFiles" multiple accept="image/*,video/*" style="display: none;">
-                            </div>
-                            <div class="file-list" id="fileList"></div>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Media Notes/Descriptions:</label>
-                            <textarea name="mediaNotes" placeholder="Describe the uploaded photos/videos, any issues captured, or additional context..."></textarea>
-                        </div>
-                    </div>
-
-                    <div class="submit-section">
-                        <button type="submit" class="submit-btn">Submit Inspection</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <script>
+<div class="container">
+<div class="form-header fade-in">
+<h1>Property Inspection</h1>
+<p>Comprehensive Walkthrough Checklist</p>
+</div>
+<div class="form-container fade-in">
+<div class="progress-bar" id="progressBar"></div>
+<div class="form-content">
+<div class="completion-stats" id="completionStats" style="display: none;">
+<div class="stat">
+<div class="stat-number" id="completedCount">0</div>
+<div class="stat-label">Completed</div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="stat">
+<div class="stat-number" id="totalCount">0</div>
+<div class="stat-label">Total Items</div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="stat">
+<div class="stat-number" id="progressPercent">0%</div>
+<div class="stat-label">Progress</div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
+<form id="inspectionForm">
+<!-- Property Information -->
+<div class="section">
+<div class="section-header">
+<div class="section-icon">📋</div>
+<h2>Property Information</h2>
+</div>
+<div class="form-grid">
+<div class="form-group required-field">
+<label for="inspectionDate">Inspection Date:</label>
+<input id="inspectionDate" name="inspectionDate" required="" type="date"/>
+<div class="error-message">Please select an inspection date</div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group required-field">
+<label for="propertyAddress">Property Address:</label>
+<input id="propertyAddress" name="propertyAddress" placeholder="Enter full property address" readonly="" required="" type="text"/>
+<div class="error-message">Please enter the property address</div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group required-field">
+<label for="bedrooms">Number of Bedrooms:</label>
+<input id="bedrooms" max="10" min="1" name="bedrooms" onchange="generateRoomSections()" placeholder="Enter number" readonly="" required="" type="number"/>
+<div class="error-message">Please enter the number of bedrooms</div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group required-field">
+<label for="bathrooms">Number of Bathrooms:</label>
+<input id="bathrooms" max="10" min="1" name="bathrooms" onchange="generateRoomSections()" placeholder="Enter number" readonly="" required="" type="number"/>
+<div class="error-message">Please enter the number of bathrooms</div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><!-- General Property Checklist -->
+<div class="section">
+<div class="section-header">
+<div class="section-icon">🏠</div>
+<h2>General Property Checklist</h2>
+</div>
+<div class="form-grid">
+<div class="form-group">
+<label>Property has door locks?</label>
+<div class="radio-group">
+<div class="radio-option">
+<input name="doorLocks" type="radio" value="yes"/>
+<span class="radio-label">✅ Yes</span>
+</div>
+<div class="radio-option">
+<input name="doorLocks" type="radio" value="no"/>
+<span class="radio-label">❌ No</span>
+</div>
+<div class="radio-option">
+<input name="doorLocks" type="radio" value="na"/>
+<span class="radio-label">➖ N/A</span>
+</div>
+</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="doorLocksDetails" placeholder="Please describe the issue..."></textarea></div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<label>Appliances turn on?</label>
+<div class="radio-group">
+<div class="radio-option">
+<input name="appliancesWork" type="radio" value="yes"/>
+<span class="radio-label">✅ Yes</span>
+</div>
+<div class="radio-option">
+<input name="appliancesWork" type="radio" value="no"/>
+<span class="radio-label">❌ No</span>
+</div>
+<div class="radio-option">
+<input name="appliancesWork" type="radio" value="na"/>
+<span class="radio-label">➖ N/A</span>
+</div>
+</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="appliancesWorkDetails" placeholder="Please describe the issue..."></textarea></div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<label>Are the appliances installed correctly?</label>
+<div class="radio-group">
+<div class="radio-option">
+<input name="appliancesInstalled" type="radio" value="yes"/>
+<span class="radio-label">✅ Yes</span>
+</div>
+<div class="radio-option">
+<input name="appliancesInstalled" type="radio" value="no"/>
+<span class="radio-label">❌ No</span>
+</div>
+<div class="radio-option">
+<input name="appliancesInstalled" type="radio" value="na"/>
+<span class="radio-label">➖ N/A</span>
+</div>
+</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="appliancesInstalledDetails" placeholder="Please describe the issue..."></textarea></div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<label>Garbage disposal works?</label>
+<div class="radio-group">
+<div class="radio-option">
+<input name="garbageDisposal" type="radio" value="yes"/>
+<span class="radio-label">✅ Yes</span>
+</div>
+<div class="radio-option">
+<input name="garbageDisposal" type="radio" value="no"/>
+<span class="radio-label">❌ No</span>
+</div>
+<div class="radio-option">
+<input name="garbageDisposal" type="radio" value="na"/>
+<span class="radio-label">➖ N/A</span>
+</div>
+</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="garbageDisposalDetails" placeholder="Please describe the issue..."></textarea></div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<label>Caulking around kitchen sink, bathroom sinks, bath tub, and toilet?</label>
+<div class="radio-group">
+<div class="radio-option">
+<input name="caulking" type="radio" value="yes"/>
+<span class="radio-label">✅ Yes</span>
+</div>
+<div class="radio-option">
+<input name="caulking" type="radio" value="no"/>
+<span class="radio-label">❌ No</span>
+</div>
+<div class="radio-option">
+<input name="caulking" type="radio" value="na"/>
+<span class="radio-label">➖ N/A</span>
+</div>
+</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="caulkingDetails" placeholder="Please describe the issue..."></textarea></div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<label>Bathtubs have Curtain Rods?</label>
+<div class="radio-group">
+<div class="radio-option">
+<input name="curtainRods" type="radio" value="yes"/>
+<span class="radio-label">✅ Yes</span>
+</div>
+<div class="radio-option">
+<input name="curtainRods" type="radio" value="no"/>
+<span class="radio-label">❌ No</span>
+</div>
+<div class="radio-option">
+<input name="curtainRods" type="radio" value="na"/>
+<span class="radio-label">➖ N/A</span>
+</div>
+</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="curtainRodsDetails" placeholder="Please describe the issue..."></textarea></div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<label>Kitchen cabinet doors &amp; drawers open/close properly?</label>
+<div class="radio-group">
+<div class="radio-option">
+<input name="kitchenCabinets" type="radio" value="yes"/>
+<span class="radio-label">✅ Yes</span>
+</div>
+<div class="radio-option">
+<input name="kitchenCabinets" type="radio" value="no"/>
+<span class="radio-label">❌ No</span>
+</div>
+<div class="radio-option">
+<input name="kitchenCabinets" type="radio" value="na"/>
+<span class="radio-label">➖ N/A</span>
+</div>
+</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="kitchenCabinetsDetails" placeholder="Please describe the issue..."></textarea></div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<label>Kitchen cabinets have hardware?</label>
+<div class="radio-group">
+<div class="radio-option">
+<input name="cabinetHardware" type="radio" value="yes"/>
+<span class="radio-label">✅ Yes</span>
+</div>
+<div class="radio-option">
+<input name="cabinetHardware" type="radio" value="no"/>
+<span class="radio-label">❌ No</span>
+</div>
+<div class="radio-option">
+<input name="cabinetHardware" type="radio" value="na"/>
+<span class="radio-label">➖ N/A</span>
+</div>
+</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="cabinetHardwareDetails" placeholder="Please describe the issue..."></textarea></div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<label>All holes are patched, textured, and painted?</label>
+<div class="radio-group">
+<div class="radio-option">
+<input name="wallRepairs" type="radio" value="yes"/>
+<span class="radio-label">✅ Yes</span>
+</div>
+<div class="radio-option">
+<input name="wallRepairs" type="radio" value="no"/>
+<span class="radio-label">❌ No</span>
+</div>
+<div class="radio-option">
+<input name="wallRepairs" type="radio" value="na"/>
+<span class="radio-label">➖ N/A</span>
+</div>
+</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="wallRepairsDetails" placeholder="Please describe the issue..."></textarea></div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<label>No paint on floors?</label>
+<div class="radio-group">
+<div class="radio-option">
+<input name="noPaintOnFloors" type="radio" value="yes"/>
+<span class="radio-label">✅ Yes</span>
+</div>
+<div class="radio-option">
+<input name="noPaintOnFloors" type="radio" value="no"/>
+<span class="radio-label">❌ No</span>
+</div>
+<div class="radio-option">
+<input name="noPaintOnFloors" type="radio" value="na"/>
+<span class="radio-label">➖ N/A</span>
+</div>
+</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="noPaintOnFloorsDetails" placeholder="Please describe the issue..."></textarea></div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<label>Flooring has transition? If needed.</label>
+<div class="radio-group">
+<div class="radio-option">
+<input name="flooringTransition" type="radio" value="yes"/>
+<span class="radio-label">✅ Yes</span>
+</div>
+<div class="radio-option">
+<input name="flooringTransition" type="radio" value="no"/>
+<span class="radio-label">❌ No</span>
+</div>
+<div class="radio-option">
+<input name="flooringTransition" type="radio" value="na"/>
+<span class="radio-label">➖ N/A</span>
+</div>
+</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="flooringTransitionDetails" placeholder="Please describe the issue..."></textarea></div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<label>Dryer has exhaust?</label>
+<div class="radio-group">
+<div class="radio-option">
+<input name="dryerExhaust" type="radio" value="yes"/>
+<span class="radio-label">✅ Yes</span>
+</div>
+<div class="radio-option">
+<input name="dryerExhaust" type="radio" value="no"/>
+<span class="radio-label">❌ No</span>
+</div>
+<div class="radio-option">
+<input name="dryerExhaust" type="radio" value="na"/>
+<span class="radio-label">➖ N/A</span>
+</div>
+</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="dryerExhaustDetails" placeholder="Please describe the issue..."></textarea></div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<label>Smoke detectors installed/working?</label>
+<div class="radio-group">
+<div class="radio-option">
+<input name="smokeDetectors" type="radio" value="yes"/>
+<span class="radio-label">✅ Yes</span>
+</div>
+<div class="radio-option">
+<input name="smokeDetectors" type="radio" value="no"/>
+<span class="radio-label">❌ No</span>
+</div>
+<div class="radio-option">
+<input name="smokeDetectors" type="radio" value="na"/>
+<span class="radio-label">➖ N/A</span>
+</div>
+</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="smokeDetectorsDetails" placeholder="Please describe the issue..."></textarea></div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<label>At least one CO detector on each floor</label>
+<div class="radio-group">
+<div class="radio-option">
+<input name="coDetectors" type="radio" value="yes"/>
+<span class="radio-label">✅ Yes</span>
+</div>
+<div class="radio-option">
+<input name="coDetectors" type="radio" value="no"/>
+<span class="radio-label">❌ No</span>
+</div>
+<div class="radio-option">
+<input name="coDetectors" type="radio" value="na"/>
+<span class="radio-label">➖ N/A</span>
+</div>
+</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="coDetectorsDetails" placeholder="Please describe the issue..."></textarea></div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<label>Site is cleaned, trash is in black bags?</label>
+<div class="radio-group">
+<div class="radio-option">
+<input name="siteCleaned" type="radio" value="yes"/>
+<span class="radio-label">✅ Yes</span>
+</div>
+<div class="radio-option">
+<input name="siteCleaned" type="radio" value="no"/>
+<span class="radio-label">❌ No</span>
+</div>
+<div class="radio-option">
+<input name="siteCleaned" type="radio" value="na"/>
+<span class="radio-label">➖ N/A</span>
+</div>
+</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="siteCleanedDetails" placeholder="Please describe the issue..."></textarea></div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<label>Attic &amp; basement have no trash? Can be merged with no trash at site?</label>
+<div class="radio-group">
+<div class="radio-option">
+<input name="atticBasementClean" type="radio" value="yes"/>
+<span class="radio-label">✅ Yes</span>
+</div>
+<div class="radio-option">
+<input name="atticBasementClean" type="radio" value="no"/>
+<span class="radio-label">❌ No</span>
+</div>
+<div class="radio-option">
+<input name="atticBasementClean" type="radio" value="na"/>
+<span class="radio-label">➖ N/A</span>
+</div>
+</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="atticBasementCleanDetails" placeholder="Please describe the issue..."></textarea></div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<label>Ecobee thermostats?</label>
+<div class="radio-group">
+<div class="radio-option">
+<input name="ecobeeThermostats" type="radio" value="yes"/>
+<span class="radio-label">✅ Yes</span>
+</div>
+<div class="radio-option">
+<input name="ecobeeThermostats" type="radio" value="no"/>
+<span class="radio-label">❌ No</span>
+</div>
+<div class="radio-option">
+<input name="ecobeeThermostats" type="radio" value="na"/>
+<span class="radio-label">➖ N/A</span>
+</div>
+</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="ecobeeThermostatsDetails" placeholder="Please describe the issue..."></textarea></div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<label>Ring Doorbell installed? (N/A if not applicable)</label>
+<div class="radio-group">
+<div class="radio-option">
+<input name="ringDoorbell" type="radio" value="yes"/>
+<span class="radio-label">✅ Yes</span>
+</div>
+<div class="radio-option">
+<input name="ringDoorbell" type="radio" value="no"/>
+<span class="radio-label">❌ No</span>
+</div>
+<div class="radio-option">
+<input name="ringDoorbell" type="radio" value="na"/>
+<span class="radio-label">➖ N/A</span>
+</div>
+</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="ringDoorbellDetails" placeholder="Please describe the issue..."></textarea></div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<label>Is the doorbell functioning?</label>
+<div class="radio-group">
+<div class="radio-option">
+<input name="doorbellFunctioning" type="radio" value="yes"/>
+<span class="radio-label">✅ Yes</span>
+</div>
+<div class="radio-option">
+<input name="doorbellFunctioning" type="radio" value="no"/>
+<span class="radio-label">❌ No</span>
+</div>
+<div class="radio-option">
+<input name="doorbellFunctioning" type="radio" value="na"/>
+<span class="radio-label">➖ N/A</span>
+</div>
+</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="doorbellFunctioningDetails" placeholder="Please describe the issue..."></textarea></div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<label>Garage door works? Opens and close?</label>
+<div class="radio-group">
+<div class="radio-option">
+<input name="garageDoor" type="radio" value="yes"/>
+<span class="radio-label">✅ Yes</span>
+</div>
+<div class="radio-option">
+<input name="garageDoor" type="radio" value="no"/>
+<span class="radio-label">❌ No</span>
+</div>
+<div class="radio-option">
+<input name="garageDoor" type="radio" value="na"/>
+<span class="radio-label">➖ N/A</span>
+</div>
+</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="garageDoorDetails" placeholder="Please describe the issue..."></textarea></div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<label>Are there garage openers?</label>
+<div class="radio-group">
+<div class="radio-option">
+<input name="garageOpeners" type="radio" value="yes"/>
+<span class="radio-label">✅ Yes</span>
+</div>
+<div class="radio-option">
+<input name="garageOpeners" type="radio" value="no"/>
+<span class="radio-label">❌ No</span>
+</div>
+<div class="radio-option">
+<input name="garageOpeners" type="radio" value="na"/>
+<span class="radio-label">➖ N/A</span>
+</div>
+</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="garageOpenersDetails" placeholder="Please describe the issue..."></textarea></div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<label>A/C filters replaced/clean?</label>
+<div class="radio-group">
+<div class="radio-option">
+<input name="acFilters" type="radio" value="yes"/>
+<span class="radio-label">✅ Yes</span>
+</div>
+<div class="radio-option">
+<input name="acFilters" type="radio" value="no"/>
+<span class="radio-label">❌ No</span>
+</div>
+<div class="radio-option">
+<input name="acFilters" type="radio" value="na"/>
+<span class="radio-label">➖ N/A</span>
+</div>
+</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="acFiltersDetails" placeholder="Please describe the issue..."></textarea></div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<label>AC cools/Heater blows warm?</label>
+<div class="radio-group">
+<div class="radio-option">
+<input name="hvac" type="radio" value="yes"/>
+<span class="radio-label">✅ Yes</span>
+</div>
+<div class="radio-option">
+<input name="hvac" type="radio" value="no"/>
+<span class="radio-label">❌ No</span>
+</div>
+<div class="radio-option">
+<input name="hvac" type="radio" value="na"/>
+<span class="radio-label">➖ N/A</span>
+</div>
+</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="hvacDetails" placeholder="Please describe the issue..."></textarea></div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<label>Fridge water filter replaced if needed?</label>
+<div class="radio-group">
+<div class="radio-option">
+<input name="fridgeWaterFilter" type="radio" value="yes"/>
+<span class="radio-label">✅ Yes</span>
+</div>
+<div class="radio-option">
+<input name="fridgeWaterFilter" type="radio" value="no"/>
+<span class="radio-label">❌ No</span>
+</div>
+<div class="radio-option">
+<input name="fridgeWaterFilter" type="radio" value="na"/>
+<span class="radio-label">➖ N/A</span>
+</div>
+</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="fridgeWaterFilterDetails" placeholder="Please describe the issue..."></textarea></div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<label>Property has Trash bin?</label>
+<div class="radio-group">
+<div class="radio-option">
+<input name="trashBin" type="radio" value="yes"/>
+<span class="radio-label">✅ Yes</span>
+</div>
+<div class="radio-option">
+<input name="trashBin" type="radio" value="no"/>
+<span class="radio-label">❌ No</span>
+</div>
+<div class="radio-option">
+<input name="trashBin" type="radio" value="na"/>
+<span class="radio-label">➖ N/A</span>
+</div>
+</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="trashBinDetails" placeholder="Please describe the issue..."></textarea></div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<label>Property has Recycle bin?</label>
+<div class="radio-group">
+<div class="radio-option">
+<input name="recycleBin" type="radio" value="yes"/>
+<span class="radio-label">✅ Yes</span>
+</div>
+<div class="radio-option">
+<input name="recycleBin" type="radio" value="no"/>
+<span class="radio-label">❌ No</span>
+</div>
+<div class="radio-option">
+<input name="recycleBin" type="radio" value="na"/>
+<span class="radio-label">➖ N/A</span>
+</div>
+</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="recycleBinDetails" placeholder="Please describe the issue..."></textarea></div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
+<div class="form-group">
+<label>General Property Notes:</label>
+<textarea name="generalPropertyNotes" placeholder="Add any additional notes, observations, or details about the general property inspection..."></textarea>
+</div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><!-- Dynamic Room Sections -->
+<div id="roomSections"></div>
+<!-- Media Upload Section -->
+<div class="section">
+<div class="section-header">
+<div class="section-icon">📸</div>
+<h2>Photos &amp; Videos</h2>
+</div>
+<div class="form-group">
+<label>Upload inspection photos and videos:</label>
+<div class="upload-area" id="uploadArea">
+<div class="upload-icon">📁</div>
+<div class="upload-text">Drag and drop files here, or click to select</div>
+<div class="upload-hint">Supports: JPG, PNG, GIF, MP4, MOV, AVI (Max 50MB per file)</div>
+<input accept="image/*,video/*" id="mediaFiles" multiple="" style="display: none;" type="file"/>
+</div>
+<div class="file-list" id="fileList"></div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<label>Media Notes/Descriptions:</label>
+<textarea name="mediaNotes" placeholder="Describe the uploaded photos/videos, any issues captured, or additional context..."></textarea>
+</div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="submit-section">
+<button class="submit-btn" type="submit">Submit Inspection</button>
+</div>
+</form>
+</div>
+</div>
+<div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
+<script>
         let uploadedFiles = [];
 
         function generateRoomSections() {
@@ -625,7 +581,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            </div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
 
                             <div class="form-group">
                                 <label>Outlets work?</label>
@@ -643,7 +599,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            </div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
 
                             <div class="form-group">
                                 <label>Windows work?</label>
@@ -661,7 +617,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            </div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
 
                             <div class="form-group">
                                 <label>Closet doors work?</label>
@@ -679,7 +635,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            </div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
 
                             <div class="form-group">
                                 <label>Ceiling fan works (if present)?</label>
@@ -697,7 +653,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            </div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
 
                             <div class="form-group">
                                 <label>Flooring in good condition (no damage, stains, or loose areas)?</label>
@@ -715,7 +671,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            </div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
 
                             <div class="form-group">
                                 <label>Air conditioning/heating vents clear and working?</label>
@@ -733,7 +689,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            </div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
 
                             <div class="form-group">
                                 <label>Walls and ceilings in good condition (no cracks, holes, or damage)?</label>
@@ -751,15 +707,15 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            </div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
                             <label>Bedroom ${i} Notes:</label>
                             <textarea name="bedroom${i}Notes" placeholder="Add any specific notes, issues, or observations for Bedroom ${i}..."></textarea>
                         </div>
                     </div>
-                `;
+                <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div>`;
             }
             
             // Generate bathroom sections with enhanced questions
@@ -788,7 +744,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            </div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
 
                             <div class="form-group">
                                 <label>Outlets work (GFCI protected)?</label>
@@ -806,7 +762,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            </div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
 
                             <div class="form-group">
                                 <label>Toilet flushes properly and no leaks?</label>
@@ -824,7 +780,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            </div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
 
                             <div class="form-group">
                                 <label>Sink and faucet work properly?</label>
@@ -842,7 +798,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            </div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
 
                             <div class="form-group">
                                 <label>Shower/tub works with good water pressure?</label>
@@ -860,7 +816,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            </div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
 
                             <div class="form-group">
                                 <label>Exhaust fan works?</label>
@@ -878,7 +834,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            </div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
 
                             <div class="form-group">
                                 <label>Caulking and grout in good condition?</label>
@@ -896,7 +852,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            </div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
 
                             <div class="form-group">
                                 <label>Flooring in good condition (no water damage or loose tiles)?</label>
@@ -914,15 +870,15 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            </div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
                             <label>Bathroom ${i} Notes:</label>
                             <textarea name="bathroom${i}Notes" placeholder="Add any specific notes, issues, or observations for Bathroom ${i}..."></textarea>
                         </div>
                     </div>
-                `;
+                <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div>`;
             }
             
             container.innerHTML = html;
@@ -930,6 +886,7 @@
             // Add event listeners for radio buttons
             addRadioButtonListeners();
             updateProgress();
+            bindCommentBoxListeners();
         }
 
         function addRadioButtonListeners() {
@@ -1035,7 +992,7 @@
                             <div class="file-name">${file.name}</div>
                             <div class="file-size">${formatFileSize(file.size)}</div>
                         </div>
-                    </div>
+                    <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
                     <button class="remove-file" onclick="removeFile('${file.name}')">Remove</button>
                 `;
                 fileList.appendChild(fileItem);
@@ -1140,6 +1097,7 @@
             
             // Initial progress update
             updateProgress();
+            bindCommentBoxListeners();
         });
 
         // Get query parameter value
@@ -1187,6 +1145,73 @@
         });
 
     
-    </script>
+    
+
+document.addEventListener("DOMContentLoaded", function () {
+    const allGroups = document.querySelectorAll('.form-group');
+    allGroups.forEach(group => {
+        const noRadio = group.querySelector('input[type="radio"][value="no"]');
+        const commentBox = group.querySelector('.comment-box');
+        if (noRadio && commentBox) {
+            const radios = group.querySelectorAll('input[type="radio"]');
+            radios.forEach(radio => {
+                radio.addEventListener('change', function () {
+                    if (this.value === 'no') {
+                        commentBox.style.display = 'block';
+                    } else {
+                        commentBox.style.display = 'none';
+                    }
+                });
+            });
+        }
+    });
+});
+
+/* ---- Delegated comment-box toggle: no edits to existing code ---- */
+document.addEventListener('click', function (e) {
+    const option = e.target.closest('.radio-option');
+    if (!option) return;
+    const group = option.closest('.form-group');
+    if (!group) return;
+    const commentBox = group.querySelector('.comment-box');
+    if (!commentBox) return;
+    const selected = group.querySelector('input[type="radio"]:checked');
+    commentBox.style.display = (selected && selected.value === 'no') ? 'block' : 'none';
+});
+
+// Also handle keyboard/label-driven selection
+document.addEventListener('change', function (e) {
+    if (!e.target.matches('input[type="radio"]')) return;
+    const group = e.target.closest('.form-group');
+    if (!group) return;
+    const commentBox = group.querySelector('.comment-box');
+    if (!commentBox) return;
+    commentBox.style.display = (e.target.value === 'no') ? 'block' : 'none';
+});
+
+// Initialize once on load
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.form-group').forEach(group => {
+        const commentBox = group.querySelector('.comment-box');
+        if (!commentBox) return;
+        const selected = group.querySelector('input[type="radio"]:checked');
+        commentBox.style.display = (selected && selected.value === 'no') ? 'block' : 'none';
+    });
+});
+
+
+function bindCommentBoxListeners() {
+    document.querySelectorAll('.form-group').forEach(group => {
+        const commentBox = group.querySelector('.comment-box');
+        if (!commentBox) return;
+        group.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', function () {
+                commentBox.style.display = (this.value === 'no') ? 'block' : 'none';
+            });
+        });
+    });
+}
+
+</script>
 </body>
 </html>
