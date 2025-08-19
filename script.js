@@ -509,7 +509,12 @@
                 });
                 
                 // Here you would normally send the data to a server
-                
+    
+    // === Generate PDF ===
+    const pdfBlob = generatePdf(formData); // generatePdf returns a Blob
+
+    // Attach PDF to FormData
+    formData.append("inspectionReport", pdfBlob, "inspection.pdf");            
     // Convert FormData to plain object
     const plainData = Object.fromEntries(formData.entries());
 
@@ -534,6 +539,51 @@
             }
         }
 
+    function generatePdf(formData) {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // === Header ===
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(18);
+            doc.text("Property Inspection Report", 105, 20, { align: "center" });
+
+            doc.setFontSize(11);
+            doc.setFont("helvetica", "normal");
+            doc.text("Generated on: " + new Date().toLocaleString(), 105, 28, { align: "center" });
+
+            // Line separator
+            doc.setLineWidth(0.5);
+            doc.line(20, 35, 190, 35);
+
+            // === Form Data ===
+            let y = 45;
+            doc.setFontSize(12);
+
+            for (const [key, value] of formData.entries()) {
+                doc.setFont("helvetica", "bold");
+                
+                doc.text(`${key}:`, 20, y);
+
+                doc.setFont("helvetica", "normal");
+                const wrappedText = doc.splitTextToSize(`${value}`, 120);
+                doc.text(wrappedText, 70, y);
+
+                y += (wrappedText.length * 10);
+
+                if (y > 280) { 
+                    doc.addPage();
+                    y = 20;
+                }
+            }
+
+            // === Footer ===
+            doc.setFontSize(10);
+            doc.setFont("helvetica", "italic");
+            doc.text("End of Report", 105, 290, { align: "center" });
+            // Return blob for sending
+                return doc.output("blob");
+}
         // Initialize everything when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
             // Set today's date as default
