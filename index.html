@@ -21,15 +21,15 @@
 <div class="stat-number" id="completedCount">0</div>
 <div class="stat-label">Completed</div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment1" placeholder="Please describe the issue..."></textarea></div><div class="stat">
+<div class="stat">
 <div class="stat-number" id="totalCount">0</div>
 <div class="stat-label">Total Items</div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment2" placeholder="Please describe the issue..."></textarea></div><div class="stat">
+<div class="stat">
 <div class="stat-number" id="progressPercent">0%</div>
 <div class="stat-label">Progress</div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment3" placeholder="Please describe the issue..."></textarea></div></div>
+</div>
 <form id="inspectionForm">
 <!-- Property Information -->
 <div class="section">
@@ -43,24 +43,24 @@
 <input id="inspectionDate" name="inspectionDate" required="" type="date"/>
 <div class="error-message">Please select an inspection date</div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment4" placeholder="Please describe the issue..."></textarea></div><div class="form-group required-field">
+<div class="form-group required-field">
 <label for="propertyAddress">Property Address:</label>
 <input id="propertyAddress" name="propertyAddress" placeholder="Enter full property address" readonly="" required="" type="text"/>
 <div class="error-message">Please enter the property address</div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment5" placeholder="Please describe the issue..."></textarea></div><div class="form-group required-field">
+<div class="form-group required-field">
 <label for="bedrooms">Number of Bedrooms:</label>
 <input id="bedrooms" max="10" min="1" name="bedrooms" onchange="generateRoomSections()" placeholder="Enter number" readonly="" required="" type="number"/>
 <div class="error-message">Please enter the number of bedrooms</div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment6" placeholder="Please describe the issue..."></textarea></div><div class="form-group required-field">
+<div class="form-group required-field">
 <label for="bathrooms">Number of Bathrooms:</label>
 <input id="bathrooms" max="10" min="1" name="bathrooms" onchange="generateRoomSections()" placeholder="Enter number" readonly="" required="" type="number"/>
 <div class="error-message">Please enter the number of bathrooms</div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment7" placeholder="Please describe the issue..."></textarea></div></div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment8" placeholder="Please describe the issue..."></textarea></div><!-- General Property Checklist -->
+</div>
+<!-- General Property Checklist -->
 <div class="section">
 <div class="section-header">
 <div class="section-icon">🏠</div>
@@ -84,7 +84,7 @@
 </div>
 </div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="doorLocksComment1" placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="doorLocksDetails" placeholder="Please describe the issue..."></textarea></div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment9" placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<div class="form-group">
 <label>Appliances turn on?</label>
 <div class="radio-group">
 <div class="radio-option">
@@ -99,9 +99,9 @@
 <input name="appliancesWork" type="radio" value="na"/>
 <span class="radio-label">➖ N/A</span>
 </div>
-</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="appliancesWorkComment1" placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="appliancesWorkDetails" placeholder="Please describe the issue..."></textarea></div>
+</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="applWrkComment1" placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="appliancesWorkDetails" placeholder="Please describe the issue..."></textarea></div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment10" placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<div class="form-group">
 <label>Are the appliances installed correctly?</label>
 <div class="radio-group">
 <div class="radio-option">
@@ -116,9 +116,9 @@
 <input name="appliancesInstalled" type="radio" value="na"/>
 <span class="radio-label">➖ N/A</span>
 </div>
-</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="appliancesInstalledComment1" placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="appliancesInstalledDetails" placeholder="Please describe the issue..."></textarea></div>
+</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="applInstlComment1" placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="appliancesInstalledDetails" placeholder="Please describe the issue..."></textarea></div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment11" placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<div class="form-group">
 <label>Garbage disposal works?</label>
 <div class="radio-group">
 <div class="radio-option">
@@ -133,9 +133,9 @@
 <input name="garbageDisposal" type="radio" value="na"/>
 <span class="radio-label">➖ N/A</span>
 </div>
-</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="garbageDisposalComment1" placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="garbageDisposalDetails" placeholder="Please describe the issue..."></textarea></div>
+</div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="garbgDispsComment1" placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="garbageDisposalDetails" placeholder="Please describe the issue..."></textarea></div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment12" placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<div class="form-group">
 <label>Caulking around kitchen sink, bathroom sinks, bath tub, and toilet?</label>
 <div class="radio-group">
 <div class="radio-option">
@@ -152,7 +152,7 @@
 </div>
 </div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="caulkingComment1" placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="caulkingDetails" placeholder="Please describe the issue..."></textarea></div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment13" placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<div class="form-group">
 <label>Bathtubs have Curtain Rods?</label>
 <div class="radio-group">
 <div class="radio-option">
@@ -169,7 +169,7 @@
 </div>
 </div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="curtainRodsComment1" placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="curtainRodsDetails" placeholder="Please describe the issue..."></textarea></div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment14" placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<div class="form-group">
 <label>Kitchen cabinet doors &amp; drawers open/close properly?</label>
 <div class="radio-group">
 <div class="radio-option">
@@ -186,7 +186,7 @@
 </div>
 </div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="kitchenCabinetsComment1" placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="kitchenCabinetsDetails" placeholder="Please describe the issue..."></textarea></div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment15" placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<div class="form-group">
 <label>Kitchen cabinets have hardware?</label>
 <div class="radio-group">
 <div class="radio-option">
@@ -203,7 +203,7 @@
 </div>
 </div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="cabinetHardwareComment1" placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="cabinetHardwareDetails" placeholder="Please describe the issue..."></textarea></div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment16" placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<div class="form-group">
 <label>All holes are patched, textured, and painted?</label>
 <div class="radio-group">
 <div class="radio-option">
@@ -220,7 +220,7 @@
 </div>
 </div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="wallRepairsComment1" placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="wallRepairsDetails" placeholder="Please describe the issue..."></textarea></div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment17" placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<div class="form-group">
 <label>No paint on floors?</label>
 <div class="radio-group">
 <div class="radio-option">
@@ -237,7 +237,7 @@
 </div>
 </div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="noPaintOnFloorsComment1" placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="noPaintOnFloorsDetails" placeholder="Please describe the issue..."></textarea></div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment18" placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<div class="form-group">
 <label>Flooring has transition? If needed.</label>
 <div class="radio-group">
 <div class="radio-option">
@@ -254,7 +254,7 @@
 </div>
 </div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="flooringTransitionComment1" placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="flooringTransitionDetails" placeholder="Please describe the issue..."></textarea></div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment19" placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<div class="form-group">
 <label>Dryer has exhaust?</label>
 <div class="radio-group">
 <div class="radio-option">
@@ -271,7 +271,7 @@
 </div>
 </div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="dryerExhaustComment1" placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="dryerExhaustDetails" placeholder="Please describe the issue..."></textarea></div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment20" placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<div class="form-group">
 <label>Smoke detectors installed/working?</label>
 <div class="radio-group">
 <div class="radio-option">
@@ -288,7 +288,7 @@
 </div>
 </div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="smokeDetectorsComment1" placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="smokeDetectorsDetails" placeholder="Please describe the issue..."></textarea></div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment21" placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<div class="form-group">
 <label>At least one CO detector on each floor</label>
 <div class="radio-group">
 <div class="radio-option">
@@ -305,7 +305,7 @@
 </div>
 </div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="coDetectorsComment1" placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="coDetectorsDetails" placeholder="Please describe the issue..."></textarea></div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment22" placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<div class="form-group">
 <label>Site is cleaned, trash is in black bags?</label>
 <div class="radio-group">
 <div class="radio-option">
@@ -322,7 +322,7 @@
 </div>
 </div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="siteCleanedComment1" placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="siteCleanedDetails" placeholder="Please describe the issue..."></textarea></div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment23" placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<div class="form-group">
 <label>Attic &amp; basement have no trash? Can be merged with no trash at site?</label>
 <div class="radio-group">
 <div class="radio-option">
@@ -339,7 +339,7 @@
 </div>
 </div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="atticBasementCleanComment1" placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="atticBasementCleanDetails" placeholder="Please describe the issue..."></textarea></div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment24" placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<div class="form-group">
 <label>Ecobee thermostats?</label>
 <div class="radio-group">
 <div class="radio-option">
@@ -356,7 +356,7 @@
 </div>
 </div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="ecobeeThermostatsComment1" placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="ecobeeThermostatsDetails" placeholder="Please describe the issue..."></textarea></div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment25" placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<div class="form-group">
 <label>Ring Doorbell installed? (N/A if not applicable)</label>
 <div class="radio-group">
 <div class="radio-option">
@@ -373,7 +373,7 @@
 </div>
 </div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="ringDoorbellComment1" placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="ringDoorbellDetails" placeholder="Please describe the issue..."></textarea></div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment26" placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<div class="form-group">
 <label>Is the doorbell functioning?</label>
 <div class="radio-group">
 <div class="radio-option">
@@ -390,7 +390,7 @@
 </div>
 </div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="doorbellFunctioningComment1" placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="doorbellFunctioningDetails" placeholder="Please describe the issue..."></textarea></div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment27" placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<div class="form-group">
 <label>Garage door works? Opens and close?</label>
 <div class="radio-group">
 <div class="radio-option">
@@ -407,7 +407,7 @@
 </div>
 </div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="garageDoorComment1" placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="garageDoorDetails" placeholder="Please describe the issue..."></textarea></div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment28" placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<div class="form-group">
 <label>Are there garage openers?</label>
 <div class="radio-group">
 <div class="radio-option">
@@ -424,7 +424,7 @@
 </div>
 </div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="garageOpenersComment1" placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="garageOpenersDetails" placeholder="Please describe the issue..."></textarea></div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment29" placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<div class="form-group">
 <label>A/C filters replaced/clean?</label>
 <div class="radio-group">
 <div class="radio-option">
@@ -441,7 +441,7 @@
 </div>
 </div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="acFiltersComment1" placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="acFiltersDetails" placeholder="Please describe the issue..."></textarea></div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment30" placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<div class="form-group">
 <label>AC cools/Heater blows warm?</label>
 <div class="radio-group">
 <div class="radio-option">
@@ -458,7 +458,7 @@
 </div>
 </div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="hvacComment1" placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="hvacDetails" placeholder="Please describe the issue..."></textarea></div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment31" placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<div class="form-group">
 <label>Fridge water filter replaced if needed?</label>
 <div class="radio-group">
 <div class="radio-option">
@@ -475,7 +475,7 @@
 </div>
 </div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="fridgeWaterFilterComment1" placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="fridgeWaterFilterDetails" placeholder="Please describe the issue..."></textarea></div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment32" placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<div class="form-group">
 <label>Property has Trash bin?</label>
 <div class="radio-group">
 <div class="radio-option">
@@ -492,7 +492,7 @@
 </div>
 </div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="trashBinComment1" placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="trashBinDetails" placeholder="Please describe the issue..."></textarea></div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment33" placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<div class="form-group">
 <label>Property has Recycle bin?</label>
 <div class="radio-group">
 <div class="radio-option">
@@ -509,13 +509,13 @@
 </div>
 </div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="recycleBinComment1" placeholder="Please describe the issue..."></textarea></div><div class="comment-box" style="display:none; margin-top:10px;"><textarea name="recycleBinDetails" placeholder="Please describe the issue..."></textarea></div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment34" placeholder="Please describe the issue..."></textarea></div></div>
+</div>
 <div class="form-group">
 <label>General Property Notes:</label>
 <textarea name="generalPropertyNotes" placeholder="Add any additional notes, observations, or details about the general property inspection..."></textarea>
 </div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment35" placeholder="Please describe the issue..."></textarea></div><!-- Dynamic Room Sections -->
+<!-- Dynamic Room Sections -->
 <div id="roomSections"></div>
 <!-- Media Upload Section -->
 <div class="section">
@@ -533,19 +533,19 @@
 </div>
 <div class="file-list" id="fileList"></div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment36" placeholder="Please describe the issue..."></textarea></div><div class="form-group">
+<div class="form-group">
 <label>Media Notes/Descriptions:</label>
 <textarea name="mediaNotes" placeholder="Describe the uploaded photos/videos, any issues captured, or additional context..."></textarea>
 </div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment37" placeholder="Please describe the issue..."></textarea></div><div class="submit-section">
+<div class="submit-section">
 <!--<button id="generatePdfBtn" type="button" style="margin-bottom: 1em;">Generate PDF</button>-->
 <button class="submit-btn" type="submit">Submit Inspection</button>
 </div>
 </form>
 </div>
 </div>
-<div class="comment-box" style="display:none; margin-top:10px;"><textarea name="generalComment38" placeholder="Please describe the issue..."></textarea></div></div>
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script src="script.js"></script>
