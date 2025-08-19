@@ -34,7 +34,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea name="bedroom${i}LightsComment" placeholder="Please describe the issue..."></textarea></div></div>
 
                             <div class="form-group">
                                 <label>Outlets work?</label>
@@ -52,7 +52,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea name="bedroom${i}OutletsComment" placeholder="Please describe the issue..."></textarea></div></div>
 
                             <div class="form-group">
                                 <label>Windows work?</label>
@@ -70,7 +70,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea name="bedroom${i}WindowsComment" placeholder="Please describe the issue..."></textarea></div></div>
 
                             <div class="form-group">
                                 <label>Closet doors work?</label>
@@ -88,7 +88,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea name="bedroom${i}ClosetDoorsComment" placeholder="Please describe the issue..."></textarea></div></div>
 
                             <div class="form-group">
                                 <label>Ceiling fan works (if present)?</label>
@@ -106,7 +106,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea name="bedroom${i}CeilingFanComment" placeholder="Please describe the issue..."></textarea></div></div>
 
                             <div class="form-group">
                                 <label>Flooring in good condition (no damage, stains, or loose areas)?</label>
@@ -124,7 +124,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea name="bedroom${i}FlooringComment" placeholder="Please describe the issue..."></textarea></div></div>
 
                             <div class="form-group">
                                 <label>Air conditioning/heating vents clear and working?</label>
@@ -142,7 +142,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea name="bedroom${i}HVACComment" placeholder="Please describe the issue..."></textarea></div></div>
 
                             <div class="form-group">
                                 <label>Walls and ceilings in good condition (no cracks, holes, or damage)?</label>
@@ -160,7 +160,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea name="bedroom${i}WallsCelComment" placeholder="Please describe the issue..."></textarea></div></div>
                         </div>
 
                         <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
@@ -197,7 +197,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea name="bathroom${i}LightsComment" placeholder="Please describe the issue..."></textarea></div></div>
 
                             <div class="form-group">
                                 <label>Outlets work (GFCI protected)?</label>
@@ -215,7 +215,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea name="bathroom${i}OutltComment" placeholder="Please describe the issue..."></textarea></div></div>
 
                             <div class="form-group">
                                 <label>Toilet flushes properly and no leaks?</label>
@@ -233,7 +233,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea name="bathroom${i}ToiletComment" placeholder="Please describe the issue..."></textarea></div></div>
 
                             <div class="form-group">
                                 <label>Sink and faucet work properly?</label>
@@ -251,7 +251,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea name="bathroom${i}SinkComment" placeholder="Please describe the issue..."></textarea></div></div>
 
                             <div class="form-group">
                                 <label>Shower/tub works with good water pressure?</label>
@@ -269,7 +269,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea name="bathroom${i}ShowerComment" placeholder="Please describe the issue..."></textarea></div></div>
 
                             <div class="form-group">
                                 <label>Exhaust fan works?</label>
@@ -287,7 +287,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea name="bathroom${i}ExFanComment" placeholder="Please describe the issue..."></textarea></div></div>
 
                             <div class="form-group">
                                 <label>Caulking and grout in good condition?</label>
@@ -305,7 +305,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea name="bathroom${i}CaulkComment" placeholder="Please describe the issue..."></textarea></div></div>
 
                             <div class="form-group">
                                 <label>Flooring in good condition (no water damage or loose tiles)?</label>
@@ -323,7 +323,7 @@
                                         <span class="radio-label">➖ N/A</span>
                                     </div>
                                 </div>
-                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div></div>
+                            <div class="comment-box" style="display:none; margin-top:10px;"><textarea name="bathroom${i}FloorComment" placeholder="Please describe the issue..."></textarea></div></div>
                         </div>
 
                         <div class="comment-box" style="display:none; margin-top:10px;"><textarea placeholder="Please describe the issue..."></textarea></div><div class="form-group">
@@ -666,3 +666,69 @@ function bindCommentBoxListeners() {
     });
 }
 
+
+
+// function generatePdf(formData) {
+//     const { jsPDF } = window.jspdf;
+//     const doc = new jsPDF();
+
+//     // === Header ===
+//     doc.setFont("helvetica", "bold");
+//     doc.setFontSize(18);
+//     doc.text("Property Inspection Report", 105, 20, { align: "center" });
+
+//     doc.setFontSize(11);
+//     doc.setFont("helvetica", "normal");
+//     doc.text("Generated on: " + new Date().toLocaleString(), 105, 28, { align: "center" });
+
+//     // Line separator
+//     doc.setLineWidth(0.5);
+//     doc.line(20, 35, 190, 35);
+
+//     // === Form Data ===
+//     let y = 45;
+//     doc.setFontSize(12);
+
+//     for (const [key, value] of formData.entries()) {
+//         doc.setFont("helvetica", "bold");
+        
+//         doc.text(`${key}:`, 20, y);
+
+//         doc.setFont("helvetica", "normal");
+//         const wrappedText = doc.splitTextToSize(`${value}`, 120);
+//         doc.text(wrappedText, 70, y);
+
+//         y += (wrappedText.length * 10);
+
+//         if (y > 280) { 
+//             doc.addPage();
+//             y = 20;
+//         }
+//     }
+
+//     // === Footer ===
+//     doc.setFontSize(10);
+//     doc.setFont("helvetica", "italic");
+//     doc.text("End of Report", 105, 290, { align: "center" });
+
+//     // Download PDF
+//     doc.save("inspection.pdf");
+// }
+
+// // ✅ Make sure the button exists before attaching listener
+// document.addEventListener("DOMContentLoaded", function() {
+//     document.getElementById("generatePdfBtn").addEventListener("click", function () {
+//         const form = document.getElementById("inspectionForm");
+//         const formData = new FormData(form);
+
+//         // Add uploaded file names if you track them
+//         if (typeof uploadedFiles !== "undefined") {
+//             uploadedFiles.forEach(file => {
+//                 formData.append("uploadedFiles[]", file.name);
+//             });
+//         }
+
+//         // Generate & download PDF
+//         generatePdf(formData);
+//     });
+// });
