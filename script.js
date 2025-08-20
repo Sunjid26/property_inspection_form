@@ -577,26 +577,53 @@
             //doc.line(20, 35, 190, 35);
 
             // === Form Data ===
-            let y = 45;
+            let y = headerHeight + 10;
             doc.setFontSize(12);
+            const col1X = 20; // Question column
+            const col2X = 70; // Answer column
+            const colWidth = 120; // wrapping width for answers
+            let rowToggle = false; // for alternating row color
 
             for (const [key, value] of formData.entries()) {
                 doc.setFont("helvetica", "bold");
-                const wrappedKey = doc.splitTextToSize(`${key}:`, 50);
-                doc.text(wrappedKey, 20, y);
+                const wrappedKey = doc.splitTextToSize(`${key}:`, 45);
+                //doc.text(wrappedKey, 20, y);
 
                 doc.setFont("helvetica", "normal");
-                const wrappedValue = doc.splitTextToSize(`${value}`, 120);
-                doc.text(wrappedValue, 70, y);
+                const wrappedValue = doc.splitTextToSize(`${value}`, colWidth);
+                //doc.text(wrappedValue, 70, y);
                 
                 const keyHeight = wrappedKey.length * 5;
                 const valueHeight = wrappedValue.length * 5;
-                y += Math.max(keyHeight, valueHeight) + 3; // Add some space
+                const rowHeight= Math.max(keyHeight, valueHeight) + 6; // Add some space
                 //y += (wrappedText.length * 10);
 
-                if (y > 290) { 
+                // Alternate row background
+                if (rowToggle) {
+                    doc.setFillColor(245, 245, 245); // light gray
+                    doc.rect(col1X - 2, y - 4, col2X + colWidth - col1X + 4, rowHeight, "F");
+                }
+                rowToggle = !rowToggle;
+
+                // Horizontal line under row
+                doc.setDrawColor(200, 200, 200);
+                doc.setLineWidth(0.3);
+                doc.line(col1X - 2, y + rowHeight - 4, col2X + colWidth, y + rowHeight - 4);
+
+                // Draw key and value
+                doc.setFont("helvetica", "bold");
+                doc.text(wrappedKey, col1X, y);
+
+                doc.setFont("helvetica", "normal");
+                doc.text(wrappedValue, col2X, y);
+
+                // Move y to next row
+                y += rowHeight;
+
+                if (y > 280) { 
                     doc.addPage();
                     y = 20;
+                    rowToggle = false; // reset row toggle for new page
                 }
             }
 
