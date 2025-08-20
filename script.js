@@ -586,7 +586,8 @@
 
             for (const [key, value] of formData.entries()) {
                 doc.setFont("helvetica", "bold");
-                const wrappedKey = doc.splitTextToSize(`${key}:`, 45);
+                const formattedKey = key.charAt(0).toUpperCase() + key.slice(1);
+                const wrappedKey = doc.splitTextToSize(`${formattedKey}:`, 45);
                 //doc.text(wrappedKey, 20, y);
 
                 doc.setFont("helvetica", "normal");
