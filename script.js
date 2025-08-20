@@ -544,17 +544,37 @@
             const doc = new jsPDF();
 
             // === Header ===
+            // === Professional Header with full-width background ===
+            const pageWidth = doc.internal.pageSize.getWidth();
+            const headerHeight = 38; // same as line y-position
+
+            doc.setFillColor(210, 210, 210);
+            doc.rect(0, 0, pageWidth, headerHeight, "F");
+
+            // Report Title
             doc.setFont("helvetica", "bold");
             doc.setFontSize(18);
-            doc.text("Property Inspection Report", 105, 20, { align: "center" });
-
+            doc.setTextColor(40, 40, 40);
+            doc.text("Property Inspection Report", pageWidth/2, 20, { align: "center" });
+            
+            // Subtitle with Date
             doc.setFontSize(11);
             doc.setFont("helvetica", "normal");
-            doc.text("Generated on: " + new Date().toLocaleString(), 105, 28, { align: "center" });
+            doc.setTextColor(80, 80, 80);
+            doc.text("Generated on: " + new Date().toLocaleString(), pageWidth/2, 28, { align: "center" });
+            
+            // Bottom border inside header
+    
+            doc.setDrawColor(150, 150, 150);
+            doc.setLineWidth(0.8);
+            doc.line(0, headerHeight, pageWidth, headerHeight); // full width
+
+            // Reset text color back to black
+            doc.setTextColor(0, 0, 0);
 
             // Line separator
             doc.setLineWidth(0.5);
-            doc.line(20, 35, 190, 35);
+            //doc.line(20, 35, 190, 35);
 
             // === Form Data ===
             let y = 45;
