@@ -548,19 +548,19 @@
             const pageWidth = doc.internal.pageSize.getWidth();
             const headerHeight = 38; // same as line y-position
 
-            doc.setFillColor(210, 210, 210);
+            doc.setFillColor(70, 130, 180);
             doc.rect(0, 0, pageWidth, headerHeight, "F");
 
             // Report Title
             doc.setFont("helvetica", "bold");
             doc.setFontSize(18);
-            doc.setTextColor(40, 40, 40);
+            doc.setTextColor(255, 255, 255);
             doc.text("Property Inspection Report", pageWidth/2, 20, { align: "center" });
             
             // Subtitle with Date
             doc.setFontSize(11);
             doc.setFont("helvetica", "normal");
-            doc.setTextColor(80, 80, 80);
+            doc.setTextColor(230, 230, 230);
             doc.text("Generated on: " + new Date().toLocaleString(), pageWidth/2, 28, { align: "center" });
             
             // Bottom border inside header
@@ -573,8 +573,8 @@
             doc.setTextColor(0, 0, 0);
 
             // Line separator
-            doc.setLineWidth(0.5);
-            //doc.line(20, 35, 190, 35);
+            //doc.setLineWidth(0.5);
+    
 
             // === Form Data ===
             let y = headerHeight + 10;
@@ -628,6 +628,15 @@
             }
 
             // === Footer ===
+            const pageCount = doc.internal.getNumberOfPages();
+            for (let i = 1; i <= pageCount; i++) {
+                doc.setPage(i);
+                doc.setFontSize(10);
+                doc.setFont("helvetica", "italic");
+                doc.setTextColor(100, 100, 100);
+                doc.text(`Page ${i} of ${pageCount}`, pageWidth - 20, 290);
+            }
+
             doc.setFontSize(10);
             doc.setFont("helvetica", "italic");
             doc.text("End of Report", 105, 290, { align: "center" });
