@@ -539,6 +539,14 @@
             }
         }
 
+     // Helper to make field names human-readable
+    function formatKeyName(key) {
+        return key
+            .replace(/_/g, " ")                   // replace underscores with spaces
+            .replace(/([a-z])([A-Z])/g, "$1 $2") // add space before capital letters
+            .replace(/\w\S*/g, w => w.charAt(0).toUpperCase() + w.slice(1)); // capitalize each word
+}
+        
     function generatePdf(formData) {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
@@ -572,9 +580,6 @@
             // Reset text color back to black
             doc.setTextColor(0, 0, 0);
 
-            // Line separator
-            //doc.setLineWidth(0.5);
-    
 
             // === Form Data ===
             let y = headerHeight + 10;
@@ -586,8 +591,8 @@
 
             for (const [key, value] of formData.entries()) {
                 doc.setFont("helvetica", "bold");
-                const formattedKey = key.charAt(0).toUpperCase() + key.slice(1);
-                const wrappedKey = doc.splitTextToSize(`${formattedKey}:`, 45);
+                const formattedKey = formatKeyName(key)+":";
+                const wrappedKey = doc.splitTextToSize(formattedKey, 45);
                 //doc.text(wrappedKey, 20, y);
 
                 doc.setFont("helvetica", "normal");
