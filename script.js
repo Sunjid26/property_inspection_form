@@ -569,12 +569,12 @@
                 const wrappedValue = doc.splitTextToSize(`${value}`, 120);
                 doc.text(wrappedValue, 70, y);
                 
-                const keyHeight = wrappedKey.length * 7;
-                const valueHeight = wrappedValue.length * 7;
-                y += Math.max(keyHeight, valueHeight) + 5; // Add some space
+                const keyHeight = wrappedKey.length * 5;
+                const valueHeight = wrappedValue.length * 5;
+                y += Math.max(keyHeight, valueHeight) + 3; // Add some space
                 //y += (wrappedText.length * 10);
 
-                if (y > 280) { 
+                if (y > 290) { 
                     doc.addPage();
                     y = 20;
                 }
