@@ -514,7 +514,17 @@
     const pdfBlob = generatePdf(formData); // generatePdf returns a Blob
 
     // Attach PDF to FormData
-    formData.append("inspectionReport", pdfBlob, "inspection.pdf");            
+    formData.append("inspectionReport", pdfBlob, "inspection.pdf");
+    // --- Loader handling ---
+    const form = document.getElementById('inspectionForm');
+    const button = form.querySelector('.submit-btn');
+    const btnText = button.querySelector('.btn-text');
+    const loader = button.querySelector('.loader');
+     
+    btnText.style.display = 'none';
+    loader.style.display = 'inline-block';
+    button.disabled = true;
+
     // Convert FormData to plain object
     const plainData = Object.fromEntries(formData.entries());
 
@@ -533,7 +543,13 @@
     .catch((error) => {
         console.error('Error:', error);
         alert('Error submitting form. Please try again.');
-    });
+    })
+    .finally(() => {
+        // Hide loader again
+        btnText.style.display = 'inline';
+        loader.style.display = 'none';
+        button.disabled = false;
+        });
     } else {
                 alert('Please fill in all required fields before submitting.');
             }
