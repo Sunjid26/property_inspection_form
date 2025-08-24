@@ -519,7 +519,7 @@
     const plainData = Object.fromEntries(formData.entries());
 
     // Send data to n8n webhook
-    fetch('https://primary-production-f6af0.up.railway.app/webhook-test/property_inspection_form', {
+    fetch('https://primary-production-f6af0.up.railway.app/webhook/property_inspection_form', {
         method: 'POST',
         //headers: { 'Content-Type': 'application/json' },
         //body: JSON.stringify(plainData)
