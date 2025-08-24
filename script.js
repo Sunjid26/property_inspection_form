@@ -590,6 +590,9 @@
             let rowToggle = false; // for alternating row color
 
             for (const [key, value] of formData.entries()) {
+                if (key === "mediaFiles" || key.toLowerCase().includes("file")) {
+                    continue;
+                }
                 doc.setFont("helvetica", "bold");
                 const formattedKey = formatKeyName(key)+":";
                 const wrappedKey = doc.splitTextToSize(formattedKey, 45);
