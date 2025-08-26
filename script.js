@@ -596,9 +596,50 @@
             // Reset text color back to black
             doc.setTextColor(0, 0, 0);
 
+            // === Briefing Section ===
+            const noItems = [];
+            for (const [key, value] of formData.entries()) {
+                if (typeof value === "string" && value.toLowerCase() === "no") {
+                    noItems.push(formatKeyName(key));
+                }
+            }
+
+            let y = headerHeight + 15;
+            doc.setFontSize(14);
+            doc.setFont("helvetica", "bold");
+            doc.text("Briefing / Checklist (For Each no selection)", 20, y);
+
+            y += 8;
+            doc.setFontSize(12);
+            doc.setFont("helvetica", "normal");
+
+            if (noItems.length === 0) {
+                doc.text("✅ No critical issues found (no 'No' answers).", 25, y);
+                y += 10;
+            } else {
+                noItems.forEach((item) => {
+                    const line = `• ${String(item)}`; // will show bullet points
+                    doc.text(line, 25, y);
+                    y += 8;
+                    if (y > 280) {
+                        doc.addPage();
+                        y = 20;
+                    }
+                });
+            }
+
+            // Full Inspection Report heading, centered and underlined
+            const heading = "Full Inspection Report";
+            const pd = doc.internal.pageSize.getWidth();
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(14);
+            doc.text(heading, pd / 2, y, { align: "center" });
+            doc.line((pd - doc.getTextWidth(heading)) / 2, y + 1, 
+                    (pd + doc.getTextWidth(heading)) / 2, y + 1);
+            y += 16;
 
             // === Form Data ===
-            let y = headerHeight + 10;
+            //let y = headerHeight + 10;
             doc.setFontSize(12);
             const col1X = 20; // Question column
             const col2X = 70; // Answer column
