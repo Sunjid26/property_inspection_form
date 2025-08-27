@@ -503,6 +503,23 @@
                 // Collect form data
                 const formData = new FormData(e.target);
                 
+                // Add appliance section data specifically to FormData
+                const applianceFields = [
+                    'appliancesExist', 'appliancesExistComment',
+                    'refrigerator', 'refrigeratorComment', 'refrigeratorWorking', 'refrigeratorWorkingComment',
+                    'dishwasher', 'dishwasherComment', 'dishwasherWorking', 'dishwasherWorkingComment',
+                    'stove', 'stoveComment', 'stoveType',
+                    'microwave', 'microwaveComment', 'microwaveWorking', 'microwaveWorkingComment',
+                    'washerDryer', 'washerDryerComment'
+                ];
+
+                applianceFields.forEach(fieldName => {
+                    const element = document.querySelector(`input[name="${fieldName}"]:checked, textarea[name="${fieldName}"]`);
+                    if (element && element.value && !formData.has(fieldName)) {
+                        formData.append(fieldName, element.value);
+                    }
+                });
+
                 // Add uploaded files
                 uploadedFiles.forEach(file => {
                     formData.append('uploadedFiles[]', file);
@@ -827,6 +844,83 @@ document.addEventListener('DOMContentLoaded', function () {
         commentBox.style.display = (selected && selected.value === 'no') ? 'block' : 'none';
     });
 });
+
+// Handle appliance sub-questions visibility with proper delegation
+document.addEventListener('change', function(e) {
+    // Handle main appliances exist question
+    if (e.target.name === 'appliancesExist') {
+        const subSection = document.querySelector('.appliance-subquestions');
+        if (e.target.value === 'yes') {
+            subSection.style.display = 'block';
+        } else {
+            subSection.style.display = 'none';
+        }
+    }
+    
+    // Handle individual appliance sub-questions
+    const applianceHandlers = {
+        'refrigerator': function(target) {
+            const formGroup = target.closest('.form-group');
+            const subGroup = formGroup.querySelector('.form-subgroup');
+            if (subGroup) {
+                subGroup.style.display = target.value === 'yes' ? 'block' : 'none';
+            }
+        },
+        'dishwasher': function(target) {
+            const formGroup = target.closest('.form-group');
+            const subGroup = formGroup.querySelector('.form-subgroup');
+            if (subGroup) {
+                subGroup.style.display = target.value === 'yes' ? 'block' : 'none';
+            }
+        },
+        'stove': function(target) {
+            const formGroup = target.closest('.form-group');
+            const subGroup = formGroup.querySelector('.form-subgroup');
+            if (subGroup) {
+                subGroup.style.display = target.value === 'yes' ? 'block' : 'none';
+            }
+        },
+        'microwave': function(target) {
+            const formGroup = target.closest('.form-group');
+            const subGroup = formGroup.querySelector('.form-subgroup');
+            if (subGroup) {
+                subGroup.style.display = target.value === 'yes' ? 'block' : 'none';
+            }
+        }
+    };
+    
+    if (applianceHandlers[e.target.name]) {
+        applianceHandlers[e.target.name](e.target);
+    }
+});
+
+// Also handle click events for radio options in appliance section
+document.addEventListener('click', function(e) {
+    const option = e.target.closest('.radio-option');
+    if (!option) return;
+    
+    const radio = option.querySelector('input[type="radio"]');
+    if (!radio) return;
+    
+    // Check if this is within the appliance section
+    const applianceSection = option.closest('.appliance-subquestions, .section');
+    if (!applianceSection) return;
+    
+    // Trigger the radio button
+    radio.checked = true;
+    
+    // Fire change event
+    const changeEvent = new Event('change', { bubbles: true });
+    radio.dispatchEvent(changeEvent);
+    
+    // Update visual selection
+    const radioGroup = option.parentNode;
+    radioGroup.querySelectorAll('.radio-option').forEach(opt => {
+        opt.classList.remove('selected');
+    });
+    option.classList.add('selected');
+});
+
 
 
 function bindCommentBoxListeners() {

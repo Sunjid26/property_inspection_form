@@ -515,6 +515,194 @@
 <textarea name="generalPropertyNotes" placeholder="Add any additional notes, observations, or details about the general property inspection..."></textarea>
 </div>
 </div>
+
+<!-- Appliances Section -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">🍽️</div>
+    <h2>Appliances</h2>
+  </div>
+
+  <!-- Appliances Exist Question -->
+  <div class="form-group">
+    <label>Do appliances exist?</label>
+    <div class="radio-group">
+      <div class="radio-option">
+        <input type="radio" name="appliancesExist" value="yes">
+        <span class="radio-label">✅ Yes</span>
+      </div>
+      <div class="radio-option">
+        <input type="radio" name="appliancesExist" value="no">
+        <span class="radio-label">❌ No</span>
+      </div>
+      <div class="radio-option">
+        <input type="radio" name="appliancesExist" value="na">
+        <span class="radio-label">➖ N/A</span>
+      </div>
+    </div>
+    <div class="comment-box" style="display:none; margin-top:10px;">
+      <textarea name="appliancesExistComment" placeholder="Please describe the issue..."></textarea>
+    </div>
+  </div>
+
+  <!-- Sub-questions (hidden until YES is selected) -->
+  <div class="appliance-subquestions" style="display:none; margin-left:20px;">
+
+    <!-- Refrigerator -->
+    <div class="form-group">
+      <label>Refrigerator present?</label>
+      <div class="radio-group">
+        <div class="radio-option">
+          <input type="radio" name="refrigerator" value="yes">
+          <span class="radio-label">✅ Yes</span>
+        </div>
+        <div class="radio-option">
+          <input type="radio" name="refrigerator" value="no">
+          <span class="radio-label">❌ No</span>
+        </div>
+      </div>
+      <div class="form-subgroup" style="margin-left:20px; display:none;">
+        <label>Is it working?</label>
+        <div class="radio-group">
+          <div class="radio-option">
+            <input type="radio" name="refrigeratorWorking" value="yes">
+            <span class="radio-label">✅ Yes</span>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="refrigeratorWorking" value="no">
+            <span class="radio-label">❌ No</span>
+          </div>
+        </div>
+        <div class="comment-box" style="display:none; margin-top:10px;">
+          <textarea name="refrigeratorWorkingComment" placeholder="Please describe the issue..."></textarea>
+        </div>
+      </div>
+      <div class="comment-box" style="display:none; margin-top:10px;">
+        <textarea name="refrigeratorComment" placeholder="Please describe the issue..."></textarea>
+      </div>
+    </div>
+
+    <!-- Dishwasher -->
+    <div class="form-group">
+      <label>Dishwasher present?</label>
+      <div class="radio-group">
+        <div class="radio-option">
+          <input type="radio" name="dishwasher" value="yes">
+          <span class="radio-label">✅ Yes</span>
+        </div>
+        <div class="radio-option">
+          <input type="radio" name="dishwasher" value="no">
+          <span class="radio-label">❌ No</span>
+        </div>
+      </div>
+      <div class="form-subgroup" style="margin-left:20px; display:none;">
+        <label>Is it working?</label>
+        <div class="radio-group">
+          <div class="radio-option">
+            <input type="radio" name="dishwasherWorking" value="yes">
+            <span class="radio-label">✅ Yes</span>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="dishwasherWorking" value="no">
+            <span class="radio-label">❌ No</span>
+          </div>
+        </div>
+        <div class="comment-box" style="display:none; margin-top:10px;">
+          <textarea name="dishwasherWorkingComment" placeholder="Please describe the issue..."></textarea>
+        </div>
+      </div>
+      <div class="comment-box" style="display:none; margin-top:10px;">
+        <textarea name="dishwasherComment" placeholder="Please describe the issue..."></textarea>
+      </div>
+    </div>
+
+    <!-- Stove -->
+    <div class="form-group">
+      <label>Stove present?</label>
+      <div class="radio-group">
+        <div class="radio-option">
+          <input type="radio" name="stove" value="yes">
+          <span class="radio-label">✅ Yes</span>
+        </div>
+        <div class="radio-option">
+          <input type="radio" name="stove" value="no">
+          <span class="radio-label">❌ No</span>
+        </div>
+      </div>
+      <div class="form-subgroup" style="margin-left:20px; display:none;">
+        <label>Type:</label>
+        <div class="radio-group">
+          <div class="radio-option">
+            <input type="radio" name="stoveType" value="gas">
+            <span class="radio-label">🔥 Gas</span>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="stoveType" value="electric">
+            <span class="radio-label">⚡ Electric</span>
+          </div>
+        </div>
+      </div>
+      <div class="comment-box" style="display:none; margin-top:10px;">
+        <textarea name="stoveComment" placeholder="Please describe the issue..."></textarea>
+      </div>
+    </div>
+
+    <!-- Microwave -->
+    <div class="form-group">
+      <label>Microwave present?</label>
+      <div class="radio-group">
+        <div class="radio-option">
+          <input type="radio" name="microwave" value="yes">
+          <span class="radio-label">✅ Yes</span>
+        </div>
+        <div class="radio-option">
+          <input type="radio" name="microwave" value="no">
+          <span class="radio-label">❌ No</span>
+        </div>
+      </div>
+      <div class="form-subgroup" style="margin-left:20px; display:none;">
+        <label>Is it working?</label>
+        <div class="radio-group">
+          <div class="radio-option">
+            <input type="radio" name="microwaveWorking" value="yes">
+            <span class="radio-label">✅ Yes</span>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="microwaveWorking" value="no">
+            <span class="radio-label">❌ No</span>
+          </div>
+        </div>
+        <div class="comment-box" style="display:none; margin-top:10px;">
+          <textarea name="microwaveWorkingComment" placeholder="Please describe the issue..."></textarea>
+        </div>
+      </div>
+      <div class="comment-box" style="display:none; margin-top:10px;">
+        <textarea name="microwaveComment" placeholder="Please describe the issue..."></textarea>
+      </div>
+    </div>
+
+    <!-- Washer/Dryer -->
+    <div class="form-group">
+      <label>Washer and Dryer Connections?</label>
+      <div class="radio-group">
+        <div class="radio-option">
+          <input type="radio" name="washerDryer" value="yes">
+          <span class="radio-label">✅ Yes</span>
+        </div>
+        <div class="radio-option">
+          <input type="radio" name="washerDryer" value="no">
+          <span class="radio-label">❌ No</span>
+        </div>
+      </div>
+      <div class="comment-box" style="display:none; margin-top:10px;">
+        <textarea name="washerDryerComment" placeholder="Please describe the issue..."></textarea>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
 <!-- Dynamic Room Sections -->
 <div id="roomSections"></div>
 <!-- Media Upload Section -->
